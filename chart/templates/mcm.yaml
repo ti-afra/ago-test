@@ -7,6 +7,7 @@ metadata:
   {{- if .Values.managementCluster.service.keepAnnotation }}
   annotations:
     helm.sh/resource-policy: keep
+    argocd.argoproj.io/sync-options: Prune=false
   {{- end }}
 ---
 {{- end }}
