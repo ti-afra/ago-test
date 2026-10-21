@@ -1,0 +1,5 @@
+managementCluster:
+  service:
+    enabled: true
+    createNamespace: true
+    keepAnnotation: true
