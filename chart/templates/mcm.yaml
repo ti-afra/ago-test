@@ -1,0 +1,25 @@
+{{- if .Values.managementCluster.service.enabled }}
+{{- if .Values.managementCluster.service.createNamespace }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: calico-system
+  {{- if .Values.managementCluster.service.keepAnnotation }}
+  annotations:
+    helm.sh/resource-policy: keep
+  {{- end }}
+---
+{{- end }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: calico-manager-mcm
+  namespace: calico-system
+spec:
+  type: ClusterIP
+  selector:
+    k8s-app: calico-manager
+  ports:
+  - port: 9449
+    targetPort: 9449
+{{- end }}
